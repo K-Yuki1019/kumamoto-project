@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "kumamoto-project-d1a6d": {
+      "hosting": {
+        "kuma-pro": [
+          "kumamoto-project-d1a6d"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "kumamoto-project-d1a6d"
+  }
+}
