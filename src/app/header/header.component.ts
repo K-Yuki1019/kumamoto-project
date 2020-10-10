@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { AuthService } from '../services/auth.service';
+import { ProjectEditDialogComponent } from '../shared/project-edit-dialog/project-edit-dialog.component';
 
 @Component({
   selector: 'app-header',
@@ -9,7 +11,7 @@ import { AuthService } from '../services/auth.service';
 export class HeaderComponent implements OnInit {
   user$ = this.authService.user$;
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private dialog: MatDialog) {}
 
   ngOnInit(): void {}
 
@@ -19,5 +21,15 @@ export class HeaderComponent implements OnInit {
 
   logout() {
     this.authService.logout();
+  }
+
+  openProjectEditDialog() {
+    this.dialog
+      .open(ProjectEditDialogComponent, {
+        maxWidth: '100vw',
+        minWidth: '30%',
+        autoFocus: false,
+      })
+      .afterClosed();
   }
 }

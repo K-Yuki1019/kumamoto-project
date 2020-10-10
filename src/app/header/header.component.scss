@@ -15,14 +15,16 @@
 .actions {
   display: flex;
   align-items: center;
+  &__add {
+    background: linear-gradient(60deg, #ff5252, #ff1744);
+  }
   &__avatar {
     margin-left: 16px;
+    background: #ddd center/cover;
   }
   &__logout {
-    margin-left: 16px;
+    mat-icon {
+      margin-right: 8px;
+    }
   }
 }
-
-/* .spacer {
-  flex: 1 1 auto;
-} */

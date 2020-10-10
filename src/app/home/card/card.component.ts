@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { fade } from 'src/app/animation';
+import { Category } from 'src/app/interfaces/category';
 import { Project } from 'src/app/interfaces/project';
 
 @Component({
@@ -9,16 +10,7 @@ import { Project } from 'src/app/interfaces/project';
   animations: [fade],
 })
 export class CardComponent implements OnInit {
-  project: Project = {
-    id: '1',
-    title: 'nashitoge',
-    description: '目標を成し遂げるためのお助けツールです。',
-    projectURL: 'https://camp-fire.jp/projects/view/315516?list=popular',
-    thumbnailURL: 'http://unsplash.it/1280/720?random&gravity=center',
-    createdAt: '10/11',
-    uid: 'xxx',
-  };
-
+  @Input() project: Project;
   constructor() {}
 
   ngOnInit(): void {}
