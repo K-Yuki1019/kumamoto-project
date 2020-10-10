@@ -1,0 +1,27 @@
+@import 'mixins';
+@import '~@angular/material/theming';
+
+.wrapper {
+  background: #fafafa;
+  padding: 48px;
+  margin-bottom: 80px;
+}
+
+.heading {
+  font-family: inter;
+  font-size: 32px;
+  font-weight: 600;
+  text-align: center;
+  color: #303030;
+  margin-bottom: 80px;
+  @include sp {
+    margin-bottom: 8px;
+    font-size: 20px;
+  }
+}
+
+.title {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
