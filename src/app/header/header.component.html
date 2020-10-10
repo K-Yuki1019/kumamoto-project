@@ -6,24 +6,23 @@
     <p class="header__description">成長途中のサービスとの出会い</p>
     <span class="header__spacer"></span>
     <div class="header__actions">
-      <button mat-button>ログイン</button>
-      <span>/</span>
-      <button mat-button>新規会員登録</button>
-      <!-- <ng-template #notLogin>
-    <a mat-button routerLink="/login" class="login">ログイン</a>
-    <span>/</span>
-    <a mat-button routerLink="/"　class="sign-up">新規会員登録</a>
-  </ng-template>
- -->
-      <!-- <ng-container *ngIf="user$ | async as user; else notLogin">
-        <mat-icon>note_add</mat-icon>
+      <ng-template #notLogin>
+        <a mat-button routerLink="/login" class="login" (click)="login()"
+          >ログイン</a
+        >
+      </ng-template>
+
+      <ng-container *ngIf="user$ | async as user; else notLogin">
+        <button mat-flat-button color="primary">
+          <mat-icon>note_add</mat-icon>
+        </button>
+        <button mat-button>ログアウト</button>
         <button
           class="header__avatar"
           mat-icon-button
-          [matMenuTriggerFor]="menu"
-          [style.background-image]="'url(' + user.photoURL + ')'"
+          [style.background-image]="'url(' + user.avatarURL + ')'"
         ></button>
-      </ng-container> -->
+      </ng-container>
     </div>
   </div>
 </div>
