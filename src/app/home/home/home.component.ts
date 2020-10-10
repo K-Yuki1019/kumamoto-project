@@ -14,54 +14,44 @@ export class HomeComponent implements OnInit {
       id: '1',
       title: 'nashitoge',
       description: '目標を成し遂げるためのお助けツールです。',
-      projectURL:
-        'xxx@xxx.comhttp://unsplash.it/1280/720?random&gravity=center',
-      thumbnailURL: 'xxx',
-      createdAt: '2020/10/11',
+      projectURL: 'https://camp-fire.jp/projects',
+      thumbnailURL: 'http://unsplash.it/1280/720?random&gravity=center',
+      createdAt: '10/11',
       uid: 'xxx',
+      category: '自己啓発',
     },
     {
       id: '2',
       title: 'nashitoge',
       description: '目標を成し遂げるためのお助けツールです。',
-      projectURL:
-        'xxx@xxx.comhttp://unsplash.it/1280/720?random&gravity=center',
-      thumbnailURL: 'xxx',
-      createdAt: '2020/10/11',
+      projectURL: 'https://camp-fire.jp/projects',
+      thumbnailURL: 'http://unsplash.it/1280/720?random&gravity=center',
+      createdAt: '10/11',
       uid: 'xxx',
+      category: '自己啓発',
     },
     {
       id: '3',
       title: 'nashitoge',
       description: '目標を成し遂げるためのお助けツールです。',
-      projectURL:
-        'xxx@xxx.comhttp://unsplash.it/1280/720?random&gravity=center',
-      thumbnailURL: 'xxx',
-      createdAt: '2020/10/11',
+      projectURL: 'https://camp-fire.jp/projects',
+      thumbnailURL: 'http://unsplash.it/1280/720?random&gravity=center',
+      createdAt: '10/11',
       uid: 'xxx',
+      category: '自己啓発',
     },
     {
       id: '4',
       title: 'nashitoge',
       description: '目標を成し遂げるためのお助けツールです。',
-      projectURL:
-        'xxx@xxx.comhttp://unsplash.it/1280/720?random&gravity=center',
-      thumbnailURL: 'xxx',
-      createdAt: '2020/10/11',
+      projectURL: 'https://camp-fire.jp/projects',
+      thumbnailURL: 'http://unsplash.it/1280/720?random&gravity=center',
+      createdAt: '10/11',
       uid: 'xxx',
+      category: '自己啓発',
     },
   ];
   constructor(private dialog: MatDialog) {}
 
   ngOnInit(): void {}
-
-  openProjectEditDialog() {
-    this.dialog
-      .open(ProjectEditDialogComponent, {
-        maxWidth: '100vw',
-        minWidth: '30%',
-        autoFocus: false,
-      })
-      .afterClosed();
-  }
 }

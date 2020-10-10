@@ -21,7 +21,8 @@ export class ProjectEditDialogComponent implements OnInit {
 
   form = this.fb.group({
     title: ['', [Validators.required, Validators.maxLength(50)]],
-    body: ['', [Validators.required, Validators.maxLength(400)]],
+    description: ['', [Validators.required, Validators.maxLength(400)]],
+    category: ['', [Validators.required, Validators.maxLength(400)]],
   });
 
   categoryGroup: Category[] = [
@@ -42,7 +43,11 @@ export class ProjectEditDialogComponent implements OnInit {
   }
 
   get body(): FormControl {
-    return this.form.get('body') as FormControl;
+    return this.form.get('description') as FormControl;
+  }
+
+  get category(): FormControl {
+    return this.form.get('category') as FormControl;
   }
 
   constructor(private authService: AuthService, private fb: FormBuilder) {}
