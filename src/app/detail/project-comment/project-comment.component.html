@@ -1,34 +1,42 @@
-<div class="comment">
-  <form
-    class="comment__form"
-    *ngIf="user$ | async as user"
-    [formGroup]="form"
-    (ngSubmit)="sendMessage()"
-  >
-    <img src="https://dummyimage.com/40x40.jpg" alt="" />
-    <mat-form-field>
-      <mat-label>チャット</mat-label>
-      <input
-        type="text"
-        formControlName="comments"
-        matInput
-        autofocus
-        autocomplete="off"
-        required
-        #body
+<div class="comment-card">
+  <form class="comment-card__form" [formGroup]="form">
+    <div class="comment-card__head">
+      <img
+        class="comment-card__avatar"
+        src="https://dummyimage.com/40x40.jpg"
+        alt=""
       />
-      <button
-        matSuffix
-        mat-icon-button
-        [disabled]="form.invalid || form.pristine"
-      >
-        <mat-icon>send</mat-icon>
-      </button>
-      <mat-error *ngIf="form.hasError('required')">必須入力です</mat-error>
-      <mat-error *ngIf="form.hasError('maxlength')"
-        >最大文字数を超えています</mat-error
-      >
-      <mat-hint align="end">{{ body.value.length }}/140文字まで</mat-hint>
-    </mat-form-field>
+      <mat-form-field>
+        <mat-label></mat-label>
+        <textarea
+          formControlName="comment"
+          placeholder="レビューコメントを送ってプロダクトを評価しよう！"
+          autofocus
+          autocomplete="off"
+          matInput
+          matTextareaAutosize
+          [matAutosizeMinRows]="3"
+          required
+          #body
+        ></textarea>
+      </mat-form-field>
+    </div>
+
+    <button
+      mat-flat-button
+      color="primary"
+      [disabled]="form.invalid || form.pristine"
+    >
+      レビューコメントを送る
+    </button>
   </form>
 </div>
+<ng-container *ngIf="allComment$">
+  <div class="comment-card" *ngFor="let comment of allComment$ | async">
+    <div class="comment-card__head">
+      <img class="comment-card__avatar" src="{{ comment.avatarId }}" alt="" />
+      <div class="comment-card__name">{{ comment.userName }}</div>
+    </div>
+    <div class="comment-card__comment">{{ comment.comment }}</div>
+  </div>
+</ng-container>

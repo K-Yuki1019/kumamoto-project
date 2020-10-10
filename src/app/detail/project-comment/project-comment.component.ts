@@ -9,8 +9,9 @@ import { FormBuilder, Validators } from '@angular/forms';
 })
 export class ProjectCommentComponent implements OnInit {
   user$ = of();
+  allComment$ = of();
   form = this.fb.group({
-    comments: ['', Validators.required],
+    comment: ['', Validators.required],
   });
 
   constructor(private fb: FormBuilder) {}
