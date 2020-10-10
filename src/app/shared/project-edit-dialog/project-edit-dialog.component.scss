@@ -7,16 +7,16 @@
 .heading {
   margin-bottom: 24px;
   &__top {
-    font-family: 'Josefin Sans';
     font-size: 24px;
     text-align: center;
     width: 100%;
-    background: linear-gradient(60deg, #ab47bc, #8e24aa);
+    border-radius: 6px;
+    background: linear-gradient(60deg, #f44336, #e53935);
     padding: 16px;
     color: #fff;
     margin: 0 auto;
     position: absolute;
-    top: -56px;
+    top: -40px;
     left: 50%;
     transform: translateX(-50%);
     @include mat-elevation(4);

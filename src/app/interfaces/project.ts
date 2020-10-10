@@ -1,5 +1,6 @@
 import { firestore } from 'firebase';
 import { UserData } from '../interfaces/user';
+import { Category } from './category';
 
 export interface Project {
   id: string;
@@ -9,6 +10,7 @@ export interface Project {
   thumbnailURL: string;
   createdAt: string;
   uid: string;
+  category: string;
 }
 
 export interface ProjectWithUser extends Project {
