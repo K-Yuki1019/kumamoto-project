@@ -17,7 +17,7 @@ export class ProjectDetailComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  openProjectDialog() {}
+  openProjectDialog(project: Project) {}
 
-  openDeleteDialog() {}
+  openDeleteDialog(project: Project) {}
 }
