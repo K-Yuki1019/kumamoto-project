@@ -1,0 +1,48 @@
+<div class="comment-card">
+  <ng-container *ngIf="authService.user$ | async as user; else notLogin">
+    <form class="comment-card__form" [formGroup]="form">
+      <div class="comment-card__head">
+        <img class="comment-card__avatar" [src]="user.avatarURL" alt="" />
+        <mat-form-field floatLabel="always">
+          <mat-label></mat-label>
+          <textarea
+            formControlName="comment"
+            placeholder="レビューコメントを送ってプロダクトを評価しよう！"
+            autofocus
+            autocomplete="off"
+            matInput
+            matTextareaAutosize
+            [matAutosizeMinRows]="3"
+            #body
+          ></textarea>
+        </mat-form-field>
+      </div>
+      <div class="comment-card__action">
+        <button
+          class="comment-card__submit"
+          mat-flat-button
+          color="primary"
+          [disabled]="form.invalid || form.pristine || processing"
+          (click)="sendComment()"
+        >
+          レビューコメントを送る
+        </button>
+      </div>
+    </form>
+  </ng-container>
+  <ng-template #notLogin>
+    <div class="not-login">
+      <p>ログインして、レビューコメントを送ろう！</p>
+      <button mat-flat-button color="primary" (click)="authService.login()">
+        ログイン
+      </button>
+    </div>
+  </ng-template>
+</div>
+<div class="comment-card" *ngFor="let comment of allComments$ | async">
+  <div class="comment-card__head">
+    <img class="comment-card__avatar" [src]="comment.avatarURL" alt="" />
+    <div class="comment-card__name">{{ comment.userName }}</div>
+  </div>
+  <div class="comment-card__comment">{{ comment.comment }}</div>
+</div>

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/firestore';
 import { MatDialog } from '@angular/material/dialog';
+import { firestore } from 'firebase';
 import { Project } from 'src/app/interfaces/project';
 import { ProjectEditDialogComponent } from 'src/app/shared/project-edit-dialog/project-edit-dialog.component';
 
@@ -16,7 +18,7 @@ export class HomeComponent implements OnInit {
       description: '目標を成し遂げるためのお助けツールです。',
       projectURL: 'https://camp-fire.jp/projects',
       thumbnailURL: 'http://unsplash.it/1280/720?random&gravity=center',
-      createdAt: '10/11',
+      createdAt: firestore.Timestamp.fromDate(new Date()),
       uid: 'xxx',
       category: '自己啓発',
     },
@@ -26,7 +28,7 @@ export class HomeComponent implements OnInit {
       description: '目標を成し遂げるためのお助けツールです。',
       projectURL: 'https://camp-fire.jp/projects',
       thumbnailURL: 'http://unsplash.it/1280/720?random&gravity=center',
-      createdAt: '10/11',
+      createdAt: firestore.Timestamp.fromDate(new Date()),
       uid: 'xxx',
       category: '自己啓発',
     },
@@ -36,7 +38,7 @@ export class HomeComponent implements OnInit {
       description: '目標を成し遂げるためのお助けツールです。',
       projectURL: 'https://camp-fire.jp/projects',
       thumbnailURL: 'http://unsplash.it/1280/720?random&gravity=center',
-      createdAt: '10/11',
+      createdAt: firestore.Timestamp.fromDate(new Date()),
       uid: 'xxx',
       category: '自己啓発',
     },
@@ -46,12 +48,12 @@ export class HomeComponent implements OnInit {
       description: '目標を成し遂げるためのお助けツールです。',
       projectURL: 'https://camp-fire.jp/projects',
       thumbnailURL: 'http://unsplash.it/1280/720?random&gravity=center',
-      createdAt: '10/11',
+      createdAt: firestore.Timestamp.fromDate(new Date()),
       uid: 'xxx',
       category: '自己啓発',
     },
   ];
-  constructor(private dialog: MatDialog) {}
+  constructor(private dialog: MatDialog, private db: AngularFirestore) {}
 
   ngOnInit(): void {}
 }
