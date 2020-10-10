@@ -1,6 +1,5 @@
 import { firestore } from 'firebase';
 import { UserData } from '../interfaces/user';
-import { Category } from './category';
 
 export interface Project {
   id: string;
