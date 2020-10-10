@@ -1,0 +1,34 @@
+<div class="header">
+  <div class="header__inner">
+    <h1 class="header__logo">
+      <a routerLink="/">Testa</a>
+    </h1>
+    <p class="header__description">成長途中のサービスとの出会い</p>
+    <span class="header__spacer"></span>
+    <div class="header__actions">
+      <div class="actions">
+        <ng-template #notLogin>
+          <a
+            mat-button
+            routerLink="/login"
+            class="actions__login"
+            (click)="login()"
+            >ログイン</a
+          >
+        </ng-template>
+
+        <ng-container *ngIf="user$ | async as user; else notLogin">
+          <button mat-flat-button color="primary" class="actions__add">
+            <mat-icon>note_add</mat-icon>
+          </button>
+          <button mat-button class="actions__logout">ログアウト</button>
+          <button
+            class="actions__avatar"
+            mat-icon-button
+            [style.background-image]="'url(' + user.avatarURL + ')'"
+          ></button>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>
