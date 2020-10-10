@@ -1,41 +1,47 @@
 <div class="comment-card">
-  <form class="comment-card__form" [formGroup]="form">
-    <div class="comment-card__head">
-      <img
-        class="comment-card__avatar"
-        src="https://dummyimage.com/40x40.jpg"
-        alt=""
-      />
-      <mat-form-field>
-        <mat-label></mat-label>
-        <textarea
-          formControlName="comment"
-          placeholder="レビューコメントを送ってプロダクトを評価しよう！"
-          autofocus
-          autocomplete="off"
-          matInput
-          matTextareaAutosize
-          [matAutosizeMinRows]="3"
-          #body
-        ></textarea>
-      </mat-form-field>
-    </div>
-    <div class="comment-card__action">
-      <button
-        class="comment-card__submit"
-        mat-flat-button
-        color="primary"
-        [disabled]="form.invalid || form.pristine"
-      >
-        レビューコメントを送る
+  <ng-container *ngIf="authService.user$ | async as user; else notLogin">
+    <form class="comment-card__form" [formGroup]="form">
+      <div class="comment-card__head">
+        <img class="comment-card__avatar" [src]="user.avatarURL" alt="" />
+        <mat-form-field floatLabel="always">
+          <mat-label></mat-label>
+          <textarea
+            formControlName="comment"
+            placeholder="レビューコメントを送ってプロダクトを評価しよう！"
+            autofocus
+            autocomplete="off"
+            matInput
+            matTextareaAutosize
+            [matAutosizeMinRows]="3"
+            #body
+          ></textarea>
+        </mat-form-field>
+      </div>
+      <div class="comment-card__action">
+        <button
+          class="comment-card__submit"
+          mat-flat-button
+          color="primary"
+          [disabled]="form.invalid || form.pristine || processing"
+        >
+          レビューコメントを送る
+        </button>
+      </div>
+    </form>
+  </ng-container>
+  <ng-template #notLogin>
+    <div class="not-login">
+      <p>ログインして、レビューコメントを送ろう！</p>
+      <button mat-flat-button color="primary" (click)="authService.login()">
+        ログイン
       </button>
     </div>
-  </form>
+  </ng-template>
 </div>
 <ng-container *ngIf="allComment$">
   <div class="comment-card" *ngFor="let comment of allComment$ | async">
     <div class="comment-card__head">
-      <img class="comment-card__avatar" src="{{ comment.avatarId }}" alt="" />
+      <img class="comment-card__avatar" [src]="comment.avatarURL" alt="" />
       <div class="comment-card__name">{{ comment.userName }}</div>
     </div>
     <div class="comment-card__comment">{{ comment.comment }}</div>

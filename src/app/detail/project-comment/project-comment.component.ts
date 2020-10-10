@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { of } from 'rxjs';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-project-comment',
@@ -8,15 +9,31 @@ import { FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./project-comment.component.scss'],
 })
 export class ProjectCommentComponent implements OnInit {
-  user$ = of();
-  allComment$ = of();
-  form = this.fb.group({
-    comment: ['', Validators.required],
+  user$ = of({
+    uid: 'aaa',
+    userName: 'つらみが深い人',
+    avatarURL: 'https://dummyimage.com/50x50.jpg',
   });
+  allComment$ = of([
+    {
+      uid: 'aaa',
+      userName: 'つらみが深い人',
+      avatarURL: 'https://dummyimage.com/50x50.jpg',
+      comment: 'めちゃめちゃいいと思います',
+    },
+  ]);
+  form = this.fb.group({
+    comment: [''],
+  });
+  processing = true;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, public authService: AuthService) {}
 
   ngOnInit(): void {}
 
-  sendMessage() {}
+  sendMessage() {
+    this.processing = true;
+    // 処理が終わる
+    this.processing = false;
+  }
 }
