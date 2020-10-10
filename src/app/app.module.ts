@@ -11,9 +11,10 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireFunctionsModule, REGION } from '@angular/fire/functions';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
+import { ShellComponent } from './shell/shell.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, ShellComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
