@@ -42,26 +42,23 @@ export class AuthService {
     const provider = new auth.GoogleAuthProvider();
     provider.setCustomParameters({ prompt: 'select_account' });
     const userCredential = await this.afAuth.signInWithPopup(provider);
-    console.log(userCredential);
-    return;
-    // const { user, additionalUserInfo } = userCredential;
-    // const twitterProfile = additionalUserInfo.profile as any;
-    // return this.userService
-    //   .getUserData(user.uid)
-    //   .pipe(take(1))
-    //   .toPromise()
-    //   .then((userDoc) => {
-    //     if (!userDoc.userId) {
-    //       this.userService
-    //         .createUser()
-    //         .then(() => {
-    //           this.succeededLogin();
-    //         })
-    //         .catch((error) => {
-    //           this.failedLogin(error);
-    //         });
-    //     }
-    //   });
+    const { user } = userCredential;
+    return this.userService
+      .getUserData(user.uid)
+      .pipe(take(1))
+      .toPromise()
+      .then((userDoc) => {
+        if (!userDoc?.userId) {
+          this.userService
+            .createUser(user)
+            .then(() => {
+              this.succeededLogin();
+            })
+            .catch((error) => {
+              this.failedLogin(error);
+            });
+        }
+      });
   }
 
   succeededLogin() {
