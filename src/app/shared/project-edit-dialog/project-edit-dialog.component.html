@@ -1,11 +1,11 @@
 <div class="wrapper">
-  <ng-container>
+  <ng-container *ngIf="user$ | async as user">
     <div class="heading">
       <h2 class="heading__top">Edit</h2>
       <p class="heading__body">あなたのプロジェクト詳細を入力しましょう！</p>
     </div>
 
-    <form [formGroup]="form" (ngSubmit)="submit()">
+    <form [formGroup]="form" (ngSubmit)="submit(user.uid)">
       <mat-dialog-content class="form">
         <mat-form-field appearance="outline" class="form__title">
           <input
@@ -76,6 +76,15 @@
           ></textarea>
         </mat-form-field>
       </mat-dialog-content>
+
+      <mat-form-field>
+        <input
+          placeholder="プロジェクトのリンクを入力"
+          matInput
+          formControlName="projectURL"
+          required
+        />
+      </mat-form-field>
 
       <mat-dialog-actions align="end">
         <button mat-raised-button color="" matDialogClose type="button">

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Project, ProjectWithUser } from '../interfaces/project';
-import { AngularFirestore } from '@angular/fire/firestore/firestore';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFireStorage } from '@angular/fire/storage';
 import { firestore } from 'firebase';
 import { AuthService } from './auth.service';
 import { Observable, combineLatest, of } from 'rxjs';
@@ -11,16 +12,30 @@ import { UserData } from '../interfaces/user';
   providedIn: 'root',
 })
 export class ProjectService {
-  constructor(private db: AngularFirestore, private authService: AuthService) {}
+  constructor(
+    private db: AngularFirestore,
+    private authService: AuthService,
+    private storege: AngularFireStorage
+  ) {}
 
-  createProject(project: Omit<Project, 'id'>) {
+  async uploadImage(id: string, file: File) {
+    const result = await this.storege.ref(`projects/${id}`).put(file);
+    return await result.ref.getDownloadURL();
+  }
+
+  async createProject(
+    project: Omit<Project, 'id' | 'createdAt' | 'thumbnailURL'>,
+    thumbnailURL: File
+  ) {
     const id = this.db.createId();
+    const imageURL: string = await this.uploadImage(id, thumbnailURL);
     const projectData: Project = {
       id,
       createdAt: firestore.Timestamp.now(),
       ...project,
+      thumbnailURL: imageURL,
     };
-    return this.db.doc(`projects/${id}`).set(projectData);
+    return this.db.doc<Project>(`projects/${id}`).set(projectData);
   }
 
   getProject(id: string): Observable<Project> {

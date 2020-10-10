@@ -1,10 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Observable } from 'rxjs';
 import { Category } from 'src/app/interfaces/category';
 import { Project } from 'src/app/interfaces/project';
 import { UserData } from 'src/app/interfaces/user';
 import { AuthService } from 'src/app/services/auth.service';
+import { ProjectService } from 'src/app/services/project.service';
 
 @Component({
   selector: 'app-project-edit-dialog',
@@ -23,6 +26,7 @@ export class ProjectEditDialogComponent implements OnInit {
     title: ['', [Validators.required, Validators.maxLength(50)]],
     description: ['', [Validators.required, Validators.maxLength(400)]],
     category: ['', [Validators.required, Validators.maxLength(400)]],
+    projectURL: ['', [Validators.required, Validators.maxLength(400)]],
   });
 
   categoryGroup: Category[] = [
@@ -42,7 +46,7 @@ export class ProjectEditDialogComponent implements OnInit {
     return this.form.get('title') as FormControl;
   }
 
-  get body(): FormControl {
+  get description(): FormControl {
     return this.form.get('description') as FormControl;
   }
 
@@ -50,7 +54,17 @@ export class ProjectEditDialogComponent implements OnInit {
     return this.form.get('category') as FormControl;
   }
 
-  constructor(private authService: AuthService, private fb: FormBuilder) {}
+  get projectURL(): FormControl {
+    return this.form.get('projectURL') as FormControl;
+  }
+
+  constructor(
+    private authService: AuthService,
+    private fb: FormBuilder,
+    private projectService: ProjectService,
+    private snackBar: MatSnackBar,
+    @Inject(MAT_DIALOG_DATA) public data: Project
+  ) {}
 
   ngOnInit(): void {}
 
@@ -69,5 +83,21 @@ export class ProjectEditDialogComponent implements OnInit {
     }
   }
 
-  submit() {}
+  submit(uid: string) {
+    this.isProcessing = true;
+    const formData = this.form.value;
+    this.projectService
+      .createProject(
+        {
+          title: formData.title,
+          description: formData.description,
+          projectURL: formData.projectURL,
+          uid,
+          category: formData.category,
+        },
+        this.file
+      )
+      .then(() => this.snackBar.open('投稿しました'))
+      .then(() => (this.isProcessing = false));
+  }
 }
