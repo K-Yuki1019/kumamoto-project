@@ -47,8 +47,8 @@ export class AuthService {
       .getUserData(user.uid)
       .pipe(take(1))
       .toPromise()
-      .then((userDoc) => {
-        if (!userDoc?.userId) {
+      .then((userDoc: UserData) => {
+        if (!userDoc?.uid) {
           this.userService
             .createUser(user)
             .then(() => {

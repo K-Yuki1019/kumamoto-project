@@ -12,14 +12,14 @@ export class UserService {
 
   createUser(user: User): Promise<void> {
     const userData: UserData = {
-      userId: user.uid,
+      uid: user.uid,
       userName: user.displayName,
       avatarURL: user.photoURL,
     };
     return this.db.doc<UserData>(`users/${user.uid}`).set(userData);
   }
 
-  getUserData(userId: string): Observable<UserData> {
-    return this.db.doc<UserData>(`users/${userId}`).valueChanges();
+  getUserData(uid: string): Observable<UserData> {
+    return this.db.doc<UserData>(`users/${uid}`).valueChanges();
   }
 }
