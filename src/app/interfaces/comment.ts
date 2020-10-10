@@ -1,7 +1,11 @@
+import { firestore } from 'firebase/app';
+
 export interface Comment {
-  articleId: string;
+  projectId: string;
+  commentId: string;
   comment: string;
-  userId: string;
+  uid: string;
   userName: string;
   avatarURL: string;
+  createdAt: firestore.Timestamp;
 }
