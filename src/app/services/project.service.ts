@@ -88,7 +88,7 @@ export class ProjectService {
   }
 
   updateProduct(project: Project): Promise<void> {
-    return this.db.doc<Project>(`projects/${project}`).set(project, {
+    return this.db.doc<Project>(`projects/${project.id}`).set(project, {
       merge: true,
     });
   }
