@@ -11,7 +11,7 @@
     text-align: center;
     width: 100%;
     border-radius: 6px;
-    background: linear-gradient(60deg, #f44336, #e53935);
+    background: linear-gradient(60deg, #ff5252, #ff1744);
     padding: 16px;
     color: #fff;
     margin: 0 auto;
@@ -32,4 +32,23 @@
   display: grid;
   grid-template-columns: 1fr;
   gap: 16px;
+  &__image {
+    position: relative;
+    width: 320px;
+    min-height: 180px;
+    border: dashed 1px #ddd;
+    border-radius: 6px;
+    margin: 0 auto;
+    text-align: center;
+    display: grid;
+    place-content: center;
+  }
+  &__note {
+    color: rgba(#212121, 0.6);
+  }
+  &__btn {
+    width: 64px;
+    background: linear-gradient(60deg, #ff5252, #ff1744);
+    margin-left: auto;
+  }
 }

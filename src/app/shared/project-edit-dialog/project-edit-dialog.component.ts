@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { Category } from 'src/app/interfaces/category';
+import { Project } from 'src/app/interfaces/project';
 import { UserData } from 'src/app/interfaces/user';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -14,7 +15,9 @@ export class ProjectEditDialogComponent implements OnInit {
   uid: string;
   user$: Observable<UserData> = this.authService.user$;
   isProcessing: boolean;
-  request: Request;
+  file: File;
+  thumbnailURL: string | ArrayBuffer;
+  project: Project;
 
   form = this.fb.group({
     title: ['', [Validators.required, Validators.maxLength(50)]],
@@ -45,6 +48,21 @@ export class ProjectEditDialogComponent implements OnInit {
   constructor(private authService: AuthService, private fb: FormBuilder) {}
 
   ngOnInit(): void {}
+
+  convertImage(file: File) {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      this.thumbnailURL = e.target.result;
+    };
+    reader.readAsDataURL(file);
+  }
+
+  setImage({ target }: { target: HTMLInputElement }) {
+    if (target.files.length) {
+      this.file = target.files[0];
+      this.convertImage(this.file);
+    }
+  }
 
   submit() {}
 }

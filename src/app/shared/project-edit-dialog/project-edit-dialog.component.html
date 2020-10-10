@@ -19,6 +19,35 @@
             matTextareaAutosize
           />
         </mat-form-field>
+
+        <div class="form__image">
+          <img
+            *ngIf="thumbnailURL || project?.thumbnailURL"
+            [src]="thumbnailURL || project.thumbnailURL"
+            alt=""
+          />
+          <p class="form__note" *ngIf="!thumbnailURL">※ 1280px x 720px以上</p>
+          <input
+            type="file"
+            style="display: none"
+            #thumbnailInput
+            (change)="setImage($event)"
+            accept="image/png, image/jpg"
+          />
+          <p class="form__note" *ngIf="!thumbnailURL && !project?.thumbnailURL">
+            サムネイル画像を選択
+          </p>
+        </div>
+        <button
+          type="button"
+          (click)="thumbnailInput.click()"
+          mat-raised-button
+          color="primary"
+          class="form__btn"
+        >
+          <mat-icon>add_photo_alternate</mat-icon>
+        </button>
+
         <div class="category">
           <mat-form-field>
             <mat-select
@@ -58,6 +87,7 @@
           [mat-dialog-close]="true"
           color="primary"
           [disabled]="form.invalid || form.pristine || isProcessing"
+          class="form__btn"
         >
           <mat-icon>send</mat-icon>
         </button>
