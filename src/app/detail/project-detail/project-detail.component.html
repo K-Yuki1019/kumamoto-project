@@ -1,1 +1,52 @@
-<p>project-detail works!</p>
+<div class="container">
+  <div @fade class="project-wrap">
+    <ng-container *ngIf="user$ | async as user">
+      <div class="heading">
+        <h1 class="heading__top">口コミ募集</h1>
+      </div>
+
+      <div class="project" *ngIf="project$ | async as project">
+        <div class="body">
+          <h2 class="body__title">
+            {{ project.title }}
+          </h2>
+
+          <p class="body__body">
+            {{ project.description }}
+          </p>
+        </div>
+
+        <div class="action" *ngIf="user.uid === project.uid">
+          <button
+            mat-flat-button
+            matTooltip="編集"
+            (click)="openProjectDialog(project)"
+          >
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button
+            mat-flat-button
+            matTooltip="削除"
+            (click)="openDeleteDialog(project)"
+          >
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+
+        <div class="user">
+          <figure>
+            <a routerLink="/user/{{ user.uid }}">
+              <img class="user__photo" [src]="user.avatarURL" alt="" />
+            </a>
+          </figure>
+
+          <div class="user__body">
+            <h3 class="user__name">
+              {{ user.userName }}
+            </h3>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>
