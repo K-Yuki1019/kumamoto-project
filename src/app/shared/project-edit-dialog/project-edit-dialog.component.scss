@@ -1,0 +1,54 @@
+@import '~@angular/material/theming';
+
+.wrapper {
+  position: relative;
+}
+
+.heading {
+  margin-bottom: 24px;
+  &__top {
+    font-size: 24px;
+    text-align: center;
+    width: 100%;
+    border-radius: 6px;
+    background: linear-gradient(60deg, #ff5252, #ff1744);
+    padding: 16px;
+    color: #fff;
+    margin: 0 auto;
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    @include mat-elevation(4);
+  }
+  &__body {
+    font-size: 16px;
+    text-align: center;
+    padding: 48px 0 24px;
+  }
+}
+
+.form {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  &__image {
+    position: relative;
+    width: 320px;
+    min-height: 180px;
+    border: dashed 1px #ddd;
+    border-radius: 6px;
+    margin: 0 auto;
+    text-align: center;
+    display: grid;
+    place-content: center;
+  }
+  &__note {
+    color: rgba(#212121, 0.6);
+  }
+  &__btn {
+    width: 64px;
+    background: linear-gradient(60deg, #ff5252, #ff1744);
+    margin-left: auto;
+  }
+}
