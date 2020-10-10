@@ -18,12 +18,12 @@ const routes: Routes = [
         loadChildren: () =>
           import('./detail/detail.module').then((m) => m.DetailModule),
       },
-      {
-        path: 'welcome',
-        loadChildren: () =>
-          import('./welcome/welcome.module').then((m) => m.WelcomeModule),
-      },
     ],
+  },
+  {
+    path: 'welcome',
+    loadChildren: () =>
+      import('./welcome/welcome.module').then((m) => m.WelcomeModule),
   },
 ];
 
