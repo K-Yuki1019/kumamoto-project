@@ -16,19 +16,20 @@
           matInput
           matTextareaAutosize
           [matAutosizeMinRows]="3"
-          required
           #body
         ></textarea>
       </mat-form-field>
     </div>
-
-    <button
-      mat-flat-button
-      color="primary"
-      [disabled]="form.invalid || form.pristine"
-    >
-      レビューコメントを送る
-    </button>
+    <div class="comment-card__action">
+      <button
+        class="comment-card__submit"
+        mat-flat-button
+        color="primary"
+        [disabled]="form.invalid || form.pristine"
+      >
+        レビューコメントを送る
+      </button>
+    </div>
   </form>
 </div>
 <ng-container *ngIf="allComment$">

@@ -1,12 +1,26 @@
 .comment-card {
   background: #fff;
   border-radius: 8px;
-  border: black;
+  border: solid 1px #000000;
   padding: 16px 16px 0;
-  display: flex;
+  margin: 16px;
+  &__head {
+    display: flex;
+    align-items: center;
+  }
+  &__form {
+    width: 100%;
+    textarea {
+      flex: auto;
+    }
+  }
   &__avatar {
     width: 40px;
     height: 40px;
     border-radius: 50%;
+    align-self: flex-start;
+  }
+  &_submit {
+    display: flex;
   }
 }
