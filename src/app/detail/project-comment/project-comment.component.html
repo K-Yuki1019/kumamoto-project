@@ -23,6 +23,7 @@
           mat-flat-button
           color="primary"
           [disabled]="form.invalid || form.pristine || processing"
+          (click)="sendComment()"
         >
           レビューコメントを送る
         </button>
@@ -38,12 +39,10 @@
     </div>
   </ng-template>
 </div>
-<ng-container *ngIf="allComment$">
-  <div class="comment-card" *ngFor="let comment of allComment$ | async">
-    <div class="comment-card__head">
-      <img class="comment-card__avatar" [src]="comment.avatarURL" alt="" />
-      <div class="comment-card__name">{{ comment.userName }}</div>
-    </div>
-    <div class="comment-card__comment">{{ comment.comment }}</div>
+<div class="comment-card" *ngFor="let comment of allComments$ | async">
+  <div class="comment-card__head">
+    <img class="comment-card__avatar" [src]="comment.avatarURL" alt="" />
+    <div class="comment-card__name">{{ comment.userName }}</div>
   </div>
-</ng-container>
+  <div class="comment-card__comment">{{ comment.comment }}</div>
+</div>

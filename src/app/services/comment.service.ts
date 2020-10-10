@@ -11,7 +11,7 @@ import { Comment } from '../interfaces/comment';
 export class CommentService {
   constructor(private db: AngularFirestore) {}
 
-  sendMessage(
+  sendComment(
     projectId: string,
     comment: string,
     user: UserData
@@ -31,19 +31,19 @@ export class CommentService {
       .set(newComment);
   }
 
-  getLatestMessages(channelId: string): Observable<Comment[]> {
+  getLatestComments(projectId: string): Observable<Comment[]> {
     return this.db
-      .doc(`rooms/${channelId}`)
-      .collection<Comment>('messages', (ref) =>
+      .doc(`projects/${projectId}`)
+      .collection<Comment>('comments', (ref) =>
         ref.orderBy('createdAt', 'desc').limit(1)
       )
       .valueChanges();
   }
 
-  getAllMessages(cannelId: string): Observable<Comment[]> {
+  getAllComments(projectId: string): Observable<Comment[]> {
     return this.db
-      .doc(`rooms/${cannelId}`)
-      .collection<Comment>('messages', (ref) =>
+      .doc(`projects/${projectId}`)
+      .collection<Comment>('comments', (ref) =>
         ref.orderBy('createdAt', 'desc').limit(30)
       )
       .valueChanges();

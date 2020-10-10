@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { of } from 'rxjs';
 import { FormBuilder } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
+import { CommentService } from 'src/app/services/comment.service';
 
 @Component({
   selector: 'app-project-comment',
@@ -9,31 +9,30 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./project-comment.component.scss'],
 })
 export class ProjectCommentComponent implements OnInit {
-  user$ = of({
-    uid: 'aaa',
-    userName: 'つらみが深い人',
-    avatarURL: 'https://dummyimage.com/50x50.jpg',
-  });
-  allComment$ = of([
-    {
-      uid: 'aaa',
-      userName: 'つらみが深い人',
-      avatarURL: 'https://dummyimage.com/50x50.jpg',
-      comment: 'めちゃめちゃいいと思います',
-    },
-  ]);
+  projectId = 'AAAAAAAAAAAAAAAAAAA';
+  allComments$ = this.commentService.getAllComments(this.projectId);
   form = this.fb.group({
     comment: [''],
   });
-  processing = true;
+  processing: boolean;
 
-  constructor(private fb: FormBuilder, public authService: AuthService) {}
+  constructor(
+    private fb: FormBuilder,
+    private commentService: CommentService,
+    public authService: AuthService
+  ) {}
 
   ngOnInit(): void {}
 
-  sendMessage() {
+  sendComment() {
+    const comment = this.form.value.comment;
     this.processing = true;
-    // 処理が終わる
+    this.commentService.sendComment(
+      this.projectId,
+      comment,
+      this.authService.user
+    );
+    this.form.reset();
     this.processing = false;
   }
 }
