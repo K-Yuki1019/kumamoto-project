@@ -12,6 +12,7 @@ import { AngularFireFunctionsModule, REGION } from '@angular/fire/functions';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
 import { ShellComponent } from './shell/shell.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [AppComponent, ShellComponent],
@@ -24,6 +25,7 @@ import { ShellComponent } from './shell/shell.component';
     AngularFirestoreModule,
     AngularFireFunctionsModule,
     AngularFireAuthModule,
+    MatSnackBarModule,
   ],
   providers: [{ provide: REGION, useValue: 'asia-northeast1' }],
   bootstrap: [AppComponent],
