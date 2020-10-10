@@ -1,5 +1,5 @@
 import { firestore } from 'firebase';
-import { User } from '../interfaces/user';
+import { UserData } from '../interfaces/user';
 
 export interface Project {
   id: string;
@@ -12,5 +12,5 @@ export interface Project {
 }
 
 export interface ProjectWithUser extends Project {
-  user: User;
+  user: UserData;
 }
