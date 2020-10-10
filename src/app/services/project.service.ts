@@ -86,4 +86,14 @@ export class ProjectService {
         })
       );
   }
+
+  updateProduct(project: Project): Promise<void> {
+    return this.db.doc<Project>(`projects/${project}`).set(project, {
+      merge: true,
+    });
+  }
+
+  deleteProduct(id: string): Promise<void> {
+    return this.db.doc<Project>(`projects/${id}`).delete();
+  }
 }
