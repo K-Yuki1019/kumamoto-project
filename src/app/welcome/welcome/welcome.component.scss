@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+@import 'mixins';
 
 $color-red: #f44336;
 
@@ -45,11 +46,17 @@ $color-red: #f44336;
     margin: 0 0 50px;
     color: #fff;
     font-size: 48px;
+    @include sp {
+      font-size: 40px;
+    }
   }
 }
 
 .about {
   padding: 60px 0;
+  @include sp {
+    text-align: center;
+  }
 
   &__content {
     max-width: 960px;
@@ -57,14 +64,27 @@ $color-red: #f44336;
     align-items: center;
     justify-content: space-between;
     margin: 0 auto;
+    @include sp {
+      flex-direction: column;
+      align-items: center;
+    }
+    @include tab {
+      text-align: center;
+    }
   }
 
   &__left {
     width: calc(100% - 460px);
+    @include sp {
+      width: 100%;
+    }
   }
 
   &__right {
     width: 420px;
+    @include sp {
+      width: 100%;
+    }
   }
 
   &__title {
@@ -75,6 +95,9 @@ $color-red: #f44336;
     margin: 20px 0 0;
     font-size: 16px;
     line-height: 1.8;
+    @include sp {
+      max-width: 100%;
+    }
   }
 }
 
@@ -85,6 +108,9 @@ $color-red: #f44336;
     display: flex;
     flex-wrap: wrap;
     list-style-type: none;
+    @include sp {
+      flex-direction: column;
+    }
   }
 
   &__item {
@@ -92,6 +118,17 @@ $color-red: #f44336;
     padding: 30px 20px;
     background-color: #fff;
     border-radius: 9px;
+
+    &:nth-of-type(even) {
+      @include sp {
+        margin-top: 16px;
+      }
+    }
+    &:last-of-type {
+      @include sp {
+        margin-top: 16px;
+      }
+    }
 
     &:not(:nth-child(3n)) {
       margin-right: 2%;
@@ -210,12 +247,6 @@ $color-red: #f44336;
     &__thumb {
       margin: 15px 0 0;
       text-align: center;
-    }
-
-    &__text {
-      margin: 15px 0 0;
-      font-size: 16px;
-      line-height: 1.6;
     }
 
     &--test {
