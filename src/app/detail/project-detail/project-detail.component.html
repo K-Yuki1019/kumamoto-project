@@ -1,54 +1,61 @@
-<div class="container">
-  <div @fade class="project-wrap">
-    <ng-container *ngIf="user$ | async as user">
-      <div class="heading">
-        <h1 class="heading__top">口コミ募集</h1>
-      </div>
+<div class="container" *ngIf="project$ | async as project">
+  <ng-container *ngIf="user$ | async as user">
+    <div class="grid">
+      <div class="heading-wrap">
+        <div class="heading">
+          <h1 class="heading__top">{{ project.title }}</h1>
+        </div>
 
-      <div class="project" *ngIf="project$ | async as project">
-        <div class="body">
-          <h2 class="body__title">
-            {{ project.title }}
+        <div class="project">
+          <h2 class="project__title">
+            {{ project.description }}
           </h2>
 
-          <p class="body__body">
-            {{ project.description }}
-          </p>
+          <figure>
+            <img [src]="project.thumbnailURL" alt="" />
+          </figure>
         </div>
+      </div>
 
-        <div class="action" *ngIf="user.uid === project.uid">
-          <button
-            mat-flat-button
-            matTooltip="編集"
-            (click)="openProjectDialog(project)"
-          >
-            <mat-icon>edit</mat-icon>
-          </button>
-          <button
-            mat-flat-button
-            matTooltip="削除"
-            (click)="openDeleteDialog(project)"
-          >
-            <mat-icon>delete</mat-icon>
-          </button>
-        </div>
-
+      <div class="body-wrap">
         <div class="user">
           <figure>
             <a routerLink="/user/{{ user.uid }}">
-              <img class="user__photo" [src]="user.avatarURL" alt="" />
+              <img class="user__photo" [src]="project.user.avatarURL" alt="" />
             </a>
           </figure>
 
           <div class="user__body">
             <h3 class="user__name">
-              {{ user.userName }}
+              {{ project.user.userName }}
             </h3>
           </div>
         </div>
-      </div>
-    </ng-container>
-  </div>
-</div>
 
-<app-project-comment></app-project-comment>
+        <div class="body">
+          <p class="body__body">
+            {{ project.body }}
+          </p>
+
+          <div class="action" *ngIf="user.uid === project.uid">
+            <button
+              mat-flat-button
+              matTooltip="編集"
+              (click)="openProjectDialog(project)"
+            >
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button
+              mat-flat-button
+              matTooltip="削除"
+              (click)="openDeleteDialog(project)"
+            >
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+  <app-project-comment></app-project-comment>
+</div>

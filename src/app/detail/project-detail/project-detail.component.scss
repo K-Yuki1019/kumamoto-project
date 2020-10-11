@@ -1,13 +1,19 @@
 @import '~@angular/material/theming';
 
-.project-wrap {
-  max-width: 60%;
+.grid {
+  display: grid;
+  grid-template-columns: 65% 35%;
+  gap: 24px;
+}
+
+.heading-wrap {
+  max-width: 100%;
   margin: 80px auto 80px;
   padding: 24px;
   background: #fff;
   position: relative;
   border-radius: 6px;
-  @include mat-elevation(8, #000, 0.8);
+  @include mat-elevation(2, #000, 0.8);
 }
 
 .heading {
@@ -17,46 +23,25 @@
     font-size: 24px;
     text-align: center;
     width: 90%;
-    background: linear-gradient(60deg, #ec407a, #d81b60);
+    background: linear-gradient(60deg, #ff5252, #ff1744);
     border-radius: 6px;
     padding: 16px;
     color: #fff;
     margin: 0 auto;
     position: absolute;
-    top: -32px;
+    top: -24px;
     left: 50%;
     transform: translateX(-50%);
     @include mat-elevation(4);
   }
 }
 
-.project {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 24px;
-}
-
-.body {
-  margin: 56px auto 80px;
-  &__title {
-    text-align: center;
-    margin-bottom: 80px;
-  }
-  &__body {
-    font-size: 14px;
-  }
-}
-
 .user {
-  max-width: 60%;
-  display: grid;
-  grid-template-columns: 80px 1fr;
-  gap: 24px;
-  margin: 0 auto;
+  text-align: center;
+  margin-top: 80px;
   padding: 24px;
   border-radius: 6px;
-  background: #303030;
-  color: #fff;
+  background: #fff;
   &__photo {
     width: 80px;
     height: 80px;
@@ -70,6 +55,25 @@
   &__name {
     font-weight: 500;
     margin-bottom: 8px;
+  }
+}
+
+.project {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  &__title {
+    text-align: center;
+    margin: 48px auto;
+  }
+}
+
+.body {
+  max-width: 100%;
+  padding: 24px;
+  background: #fff;
+  &__body {
+    margin-bottom: 24px;
   }
 }
 
