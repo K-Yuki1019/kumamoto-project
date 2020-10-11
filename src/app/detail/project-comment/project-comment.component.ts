@@ -20,7 +20,7 @@ export class ProjectCommentComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private commentService: CommentService,
+    public commentService: CommentService,
     public authService: AuthService
   ) {}
 

@@ -43,6 +43,17 @@
   <div class="comment-card__head">
     <img class="comment-card__avatar" [src]="comment.avatarURL" alt="" />
     <div class="comment-card__name">{{ comment.userName }}</div>
+    <div class="comment-card__spacer"></div>
+    <button
+      mat-flat-button
+      color="warn"
+      (click)="
+        commentService.deleteComment(comment.projectId, comment.commentId)
+      "
+      class="comment-card__delete"
+    >
+      削除
+    </button>
   </div>
   <div class="comment-card__comment">{{ comment.comment }}</div>
 </div>
