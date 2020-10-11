@@ -1,7 +1,7 @@
 <section class="hero">
   <div class="container">
     <h1 class="hero__title">新しいサービスを一緒に育てる</h1>
-    <button mat-raised-button color="warn" class="start-btn">
+    <button mat-raised-button color="warn" class="start-btn" (click)="login()">
       testaを始める
     </button>
   </div>
@@ -12,13 +12,16 @@
       <div class="about__left">
         <h2 class="about__title">About testa</h2>
         <p class="about__text">
-          すごいサービスですすごいサービスですすごいサービスですすごいサービスですすごいサービスです
+          新しいサービスを完成させていざ公開…！と思っても<br />
+          なかなか周りに見せられる人がいないなんてことありませんか。
         </p>
         <p class="about__text">
-          すごいサービスですすごいサービスですすごいサービスですすごいサービスですすごいサービスです
+          Testaなら公開前に多くの人にレビューをもらうことで<br />
+          より良いサービスに磨いてから世界にお披露目することができます！
         </p>
         <p class="about__text">
-          すごいサービスですすごいサービスですすごいサービスですすごいサービスですすごいサービスです
+          一生懸命作ったあなたのWebサービスはどう見えてるのか。<br />
+          なかなか聞けない生の声を聞くことができるサービスです。
         </p>
       </div>
       <div class="about__right">
@@ -34,6 +37,7 @@
               <span class="material-icons">check_circle</span>
             </figure>
             <h3 class="feature__name">個人開発でも寂しくない！</h3>
+            　　
           </div>
           <p class="feature__text">
             個人開発は、テストをするのも自分1人です。<br />でもtestaを利用すれば、複数人でのチェックが可能なので、自分では気付かなかったミスを見つけてもらえるかもしれません。
@@ -47,7 +51,7 @@
             <h3 class="feature__name">新しいサービスに出会える</h3>
           </div>
           <p class="feature__text">
-            様々なジャンルのサービスがあります。世の中にまだない、新しくて面白いサービスの協力者になれるかもしれません。
+            様々なサービスジャンルの投稿に対応しています。Testaから世の中にまだない新しい価値を生み出すサービスの協力者となれるかもしれません。
           </p>
         </li>
         <li class="feature__item">
@@ -55,10 +59,10 @@
             <figure class="feature__icon">
               <span class="material-icons">check_circle</span>
             </figure>
-            <h3 class="feature__name">新しいサービスに出会える</h3>
+            <h3 class="feature__name">継続的にサービスの成長を見れる</h3>
           </div>
           <p class="feature__text">
-            様々なジャンルのサービスがあります。世の中にまだない、新しくて面白いサービスの協力者になれるかもしれません。
+            Webサービスのブラッシュアップは一回では終わりません。評価されるたびに進化していくサービスをリアルタイムで見ることができます。
           </p>
         </li>
       </ul>
@@ -83,16 +87,14 @@
             <p class="flow__step__no">2</p>
             <h4 class="flow__step__title">プロジェクトを作成して、公開する</h4>
             <p class="flow__step__text">
-              testaでユーザー登録をして、ログインします。
+              プロジェクトの詳細を登録して、公開します。<br />SNSなどでプロジェクトを拡めて、たくさんの人にレビューをしてもらいましょう。
             </p>
           </li>
           <li class="flow__step">
             <p class="flow__step__no">3</p>
-            <h4 class="flow__step__title">
-              プロジェクトを拡めて、<br />たくさんの人にレビューをしてもらう
-            </h4>
+            <h4 class="flow__step__title">レビューをしてくれた人に感謝する</h4>
             <p class="flow__step__text">
-              testaでユーザー登録をして、ログインします。
+              無償でレビューをしていただいたので、感謝の気持ちを伝えましょう！
             </p>
           </li>
         </ol>
@@ -111,16 +113,14 @@
             <p class="flow__step__no">2</p>
             <h4 class="flow__step__title">プロジェクトを探す</h4>
             <p class="flow__step__text">
-              testaでユーザー登録をして、ログインします。
+              様々なジャンルのプロジェクトがあります。気になるプロジェクトを探しましょう。
             </p>
           </li>
           <li class="flow__step flow__step--test">
             <p class="flow__step__no">3</p>
-            <h4 class="flow__step__title">
-              プロジェクトをテストして、レビューをする
-            </h4>
+            <h4 class="flow__step__title">レビューをする</h4>
             <p class="flow__step__text">
-              testaでユーザー登録をして、ログインします。
+              プロジェクトのテストをして、レビューしましょう。
             </p>
           </li>
         </ol>
@@ -131,18 +131,23 @@
 <section class="message">
   <div class="container">
     <div class="message__content">
-      <h2 class="message__title">とどめのキャッチコピー</h2>
+      <h2 class="message__title">あなたの声がサービスを進化させる</h2>
       <p class="message__text">
-        キャッチコピーキャッチコピーキャッチコピーキャッチコピーキャッチコピーキャッチコピーキャッチコピー
+        一つのサービスに5人のレビューが集まれば<br />
+        サービス上の大きな問題のうち50％は解決すると言われています。
       </p>
       <p class="message__text">
-        キャッチコピーキャッチコピーキャッチコピーキャッチコピーキャッチコピーキャッチコピーキャッチコピー
+        自分が思うなんとなくの「こうすればいい」よりも<br />
+        使ってくれた人の確かな「こうして欲しい」に<br />
+        気付けるチャンスはなかなかありません。
       </p>
       <p class="message__text">
-        キャッチコピーキャッチコピーキャッチコピーキャッチコピーキャッチコピーキャッチコピーキャッチコピー
+        あなたのたった一言がサービスを大きく変えるかもしれない。<br />
+        誰かのたった一言で気付けなかった事に気付くかもしれない。
       </p>
       <p class="message__text">
-        キャッチコピーキャッチコピーキャッチコピーキャッチコピーキャッチコピーキャッチコピーキャッチコピー
+        Testaで未完成のサービスをクリエイターとあなたで<br />
+        一緒に創りあげてみませんか。
       </p>
     </div>
   </div>
@@ -151,7 +156,7 @@
   <div class="container">
     <h2 class="started__title">Join testa！</h2>
     <p class="started__text">一緒にサービスを育てよう</p>
-    <button mat-raised-button color="warn" class="start-btn">
+    <button mat-raised-button color="warn" class="start-btn" (click)="login()">
       testaを始める
     </button>
   </div>

@@ -1,16 +1,7 @@
-@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
-
 $color-red: #f44336;
 
 :host {
-  background-color: #fff;
   color: #222;
-}
-
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
 }
 
 .start-btn {
@@ -52,7 +43,6 @@ $color-red: #f44336;
   padding: 60px 0;
 
   &__content {
-    max-width: 960px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -60,11 +50,12 @@ $color-red: #f44336;
   }
 
   &__left {
-    width: calc(100% - 460px);
+    flex: 1;
   }
 
   &__right {
-    width: 420px;
+    flex: 0 0 500px;
+    margin-left: 40px;
   }
 
   &__title {
@@ -79,7 +70,7 @@ $color-red: #f44336;
 }
 
 .feature {
-  margin: 50px 0 0;
+  margin: 60px 0 0;
 
   &__list {
     display: flex;
@@ -92,6 +83,7 @@ $color-red: #f44336;
     padding: 30px 20px;
     background-color: #fff;
     border-radius: 9px;
+    box-shadow: 0 20px 30px -15px rgba(0, 0, 0, 0.08);
 
     &:not(:nth-child(3n)) {
       margin-right: 2%;
@@ -236,7 +228,7 @@ $color-red: #f44336;
 
   &__content {
     padding: 50px;
-    background-color: $color-red;
+    background: linear-gradient(90deg, #f64744, #ff6258);
     border-radius: 15px;
     box-shadow: 0px 0px 24px rgba(0, 0, 0, 0.1);
   }
