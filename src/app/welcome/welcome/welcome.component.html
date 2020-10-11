@@ -1,7 +1,7 @@
 <section class="hero">
   <div class="container">
     <h1 class="hero__title">新しいサービスを一緒に育てる</h1>
-    <button mat-raised-button color="warn" class="start-btn">
+    <button mat-raised-button color="warn" class="start-btn" (click)="login()">
       testaを始める
     </button>
   </div>
@@ -87,16 +87,14 @@
             <p class="flow__step__no">2</p>
             <h4 class="flow__step__title">プロジェクトを作成して、公開する</h4>
             <p class="flow__step__text">
-              testaでユーザー登録をして、ログインします。
+              プロジェクトの詳細を登録して、公開します。<br />SNSなどでプロジェクトを拡めて、たくさんの人にレビューをしてもらいましょう。
             </p>
           </li>
           <li class="flow__step">
             <p class="flow__step__no">3</p>
-            <h4 class="flow__step__title">
-              プロジェクトを拡めて、<br />たくさんの人にレビューをしてもらう
-            </h4>
+            <h4 class="flow__step__title">レビューをしてくれた人に感謝する</h4>
             <p class="flow__step__text">
-              testaでユーザー登録をして、ログインします。
+              無償でレビューをしていただいたので、感謝の気持ちを伝えましょう！
             </p>
           </li>
         </ol>
@@ -115,16 +113,14 @@
             <p class="flow__step__no">2</p>
             <h4 class="flow__step__title">プロジェクトを探す</h4>
             <p class="flow__step__text">
-              testaでユーザー登録をして、ログインします。
+              様々なジャンルのプロジェクトがあります。気になるプロジェクトを探しましょう。
             </p>
           </li>
           <li class="flow__step flow__step--test">
             <p class="flow__step__no">3</p>
-            <h4 class="flow__step__title">
-              プロジェクトをテストして、レビューをする
-            </h4>
+            <h4 class="flow__step__title">レビューをする</h4>
             <p class="flow__step__text">
-              testaでユーザー登録をして、ログインします。
+              プロジェクトのテストをして、レビューしましょう。
             </p>
           </li>
         </ol>
@@ -160,7 +156,7 @@
   <div class="container">
     <h2 class="started__title">Join testa！</h2>
     <p class="started__text">一緒にサービスを育てよう</p>
-    <button mat-raised-button color="warn" class="start-btn">
+    <button mat-raised-button color="warn" class="start-btn" (click)="login()">
       testaを始める
     </button>
   </div>
