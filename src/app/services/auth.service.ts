@@ -81,7 +81,7 @@ export class AuthService {
     return await this.afAuth
       .signOut()
       .then(() => {
-        this.router.navigateByUrl('/');
+        this.router.navigateByUrl('/welcome');
         this.snackBar.open('ログアウトしました。', '閉じる');
         this.loginProcessing = false;
       })

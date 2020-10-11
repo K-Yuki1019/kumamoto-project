@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AuthGuard } from './guards/auth.guard';
 import { ShellComponent } from './shell/shell.component';
 
 const routes: Routes = [
@@ -19,6 +20,8 @@ const routes: Routes = [
           import('./detail/detail.module').then((m) => m.DetailModule),
       },
     ],
+    canLoad: [AuthGuard],
+    canActivate: [AuthGuard],
   },
   {
     path: 'welcome',
