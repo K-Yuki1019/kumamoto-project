@@ -4,6 +4,7 @@
     <div class="title">
       <ng-container *ngIf="projects$ | async as projects">
         <app-card
+          @fade
           *ngFor="let project of projects"
           [project]="project"
         ></app-card>
