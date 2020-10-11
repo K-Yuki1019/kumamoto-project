@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { fade } from 'src/app/animation';
-import { Category } from 'src/app/interfaces/category';
 import { Project } from 'src/app/interfaces/project';
 
 @Component({

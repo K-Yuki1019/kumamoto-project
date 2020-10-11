@@ -21,7 +21,10 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
+import {
+  MatSnackBarModule,
+  MAT_SNACK_BAR_DEFAULT_OPTIONS,
+} from '@angular/material/snack-bar';
 import { SharedModule } from './shared/shared.module';
 
 @NgModule({
@@ -50,7 +53,10 @@ import { SharedModule } from './shared/shared.module';
     MatSnackBarModule,
     SharedModule,
   ],
-  providers: [{ provide: REGION, useValue: 'asia-northeast1' }],
+  providers: [
+    { provide: REGION, useValue: 'asia-northeast1' },
+    { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { duration: 2500 } },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
