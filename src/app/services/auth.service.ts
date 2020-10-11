@@ -57,7 +57,12 @@ export class AuthService {
             .catch((error) => {
               this.failedLogin(error);
             });
+        } else {
+          this.succeededLogin();
         }
+      })
+      .catch((error) => {
+        this.failedLogin(error);
       });
   }
 

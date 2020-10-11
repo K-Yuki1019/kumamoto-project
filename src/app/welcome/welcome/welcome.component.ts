@@ -11,7 +11,7 @@ export class WelcomeComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  login() {
-    this.authService.login();
+  login(): Promise<void> {
+    return this.authService.login();
   }
 }
