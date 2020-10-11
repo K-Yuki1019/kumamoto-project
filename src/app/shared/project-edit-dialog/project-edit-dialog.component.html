@@ -1,11 +1,11 @@
 <div class="wrapper">
-  <ng-container>
+  <ng-container *ngIf="user$ | async as user">
     <div class="heading">
       <h2 class="heading__top">Edit</h2>
       <p class="heading__body">あなたのプロジェクト詳細を入力しましょう！</p>
     </div>
 
-    <form [formGroup]="form" (ngSubmit)="submit()">
+    <form [formGroup]="form" (ngSubmit)="submit(user.uid)">
       <mat-dialog-content class="form">
         <mat-form-field appearance="outline" class="form__title">
           <input
@@ -63,19 +63,40 @@
             </mat-select>
           </mat-form-field>
         </div>
+        <mat-form-field appearance="outline" class="form__description">
+          <textarea
+            matInput
+            placeholder="プロジェクトの特徴を一言で"
+            formControlName="description"
+            #description
+            autocomplete="off"
+            required
+            matTextareaAutosize
+            [matAutosizeMinRows]="2"
+          ></textarea>
+        </mat-form-field>
+
         <mat-form-field appearance="outline" class="form__body">
           <textarea
             matInput
             placeholder="プロジェクトの詳細情報を入力"
-            formControlName="description"
+            formControlName="body"
             #body
             autocomplete="off"
-            required
             matTextareaAutosize
             [matAutosizeMinRows]="10"
           ></textarea>
         </mat-form-field>
       </mat-dialog-content>
+
+      <mat-form-field>
+        <input
+          placeholder="プロジェクトのリンクを入力"
+          matInput
+          formControlName="projectURL"
+          required
+        />
+      </mat-form-field>
 
       <mat-dialog-actions align="end">
         <button mat-raised-button color="" matDialogClose type="button">

@@ -15,12 +15,12 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  login() {
-    this.authService.login();
+  login(): Promise<void> {
+    return this.authService.login();
   }
 
-  logout() {
-    this.authService.logout();
+  logout(): Promise<void> {
+    return this.authService.logout();
   }
 
   openProjectEditDialog() {
