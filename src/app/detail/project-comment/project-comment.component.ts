@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { Comment } from 'src/app/interfaces/comment';
 import { AuthService } from 'src/app/services/auth.service';
 import { CommentService } from 'src/app/services/comment.service';
 
@@ -9,8 +11,8 @@ import { CommentService } from 'src/app/services/comment.service';
   styleUrls: ['./project-comment.component.scss'],
 })
 export class ProjectCommentComponent implements OnInit {
-  projectId = 'AAAAAAAAAAAAAAAAAAA';
-  allComments$ = this.commentService.getAllComments(this.projectId);
+  @Input() projectId: string;
+  allComments$: Observable<Comment[]>;
   form = this.fb.group({
     comment: [''],
   });
@@ -22,7 +24,9 @@ export class ProjectCommentComponent implements OnInit {
     public authService: AuthService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.allComments$ = this.commentService.getAllComments(this.projectId);
+  }
 
   sendComment() {
     const comment = this.form.value.comment;
