@@ -29,6 +29,25 @@
         </button>
       </div>
     </form>
+    <div class="comment-card" *ngFor="let comment of allComments$ | async">
+      <div class="comment-card__head">
+        <img class="comment-card__avatar" [src]="comment.avatarURL" alt="" />
+        <div class="comment-card__name">{{ comment.userName }}</div>
+        <div class="comment-card__spacer"></div>
+        <button
+          mat-flat-button
+          color="warn"
+          (click)="
+            commentService.deleteComment(comment.projectId, comment.commentId)
+          "
+          class="comment-card__delete"
+          *ngIf="user.uid === comment.uid"
+        >
+          削除
+        </button>
+      </div>
+      <div class="comment-card__comment">{{ comment.comment }}</div>
+    </div>
   </ng-container>
   <ng-template #notLogin>
     <div class="not-login">
@@ -38,11 +57,4 @@
       </button>
     </div>
   </ng-template>
-</div>
-<div class="comment-card" *ngFor="let comment of allComments$ | async">
-  <div class="comment-card__head">
-    <img class="comment-card__avatar" [src]="comment.avatarURL" alt="" />
-    <div class="comment-card__name">{{ comment.userName }}</div>
-  </div>
-  <div class="comment-card__comment">{{ comment.comment }}</div>
 </div>

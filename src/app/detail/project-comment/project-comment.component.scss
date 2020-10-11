@@ -27,6 +27,12 @@
     flex-wrap: wrap;
     justify-content: flex-end;
   }
+  &__submit {
+    background-color: #ff2246;
+  }
+  &__spacer {
+    flex: 1;
+  }
 }
 .not-login {
   text-align: center;

@@ -31,6 +31,12 @@ export class CommentService {
       .set(newComment);
   }
 
+  deleteComment(projectId: string, commentId: string): Promise<void> {
+    return this.db
+      .doc<Comment>(`projects/${projectId}/comments/${commentId}`)
+      .delete();
+  }
+
   getLatestComments(projectId: string): Observable<Comment[]> {
     return this.db
       .doc(`projects/${projectId}`)
