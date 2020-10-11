@@ -48,21 +48,17 @@
           <mat-icon>add_photo_alternate</mat-icon>
         </button>
 
-        <div class="category">
-          <mat-form-field>
-            <mat-select
-              formControlName="category"
-              placeholder="カテゴリーを選択"
+        <mat-form-field class="category">
+          <mat-select formControlName="category" placeholder="カテゴリーを選択">
+            <mat-option
+              *ngFor="let category of categoryGroup"
+              [value]="category.value"
             >
-              <mat-option
-                *ngFor="let category of categoryGroup"
-                [value]="category.value"
-              >
-                {{ category.viewValue }}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
+              {{ category.viewValue }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
         <mat-form-field appearance="outline" class="form__description">
           <textarea
             matInput
@@ -87,16 +83,16 @@
             [matAutosizeMinRows]="10"
           ></textarea>
         </mat-form-field>
-      </mat-dialog-content>
 
-      <mat-form-field>
-        <input
-          placeholder="プロジェクトのリンクを入力"
-          matInput
-          formControlName="projectURL"
-          required
-        />
-      </mat-form-field>
+        <mat-form-field class="form__link">
+          <input
+            placeholder="プロジェクトのリンクを入力"
+            matInput
+            formControlName="projectURL"
+            required
+          />
+        </mat-form-field>
+      </mat-dialog-content>
 
       <mat-dialog-actions align="end">
         <button mat-raised-button color="" matDialogClose type="button">

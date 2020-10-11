@@ -51,7 +51,7 @@ export class ProjectService {
       .pipe(
         switchMap((project: Project) => {
           const user$: Observable<UserData> = this.db
-            .doc<UserData>(`users/${project.uid}`)
+            .doc<UserData>(`users/${project?.uid}`)
             .valueChanges();
           return combineLatest([user$, of(project)]);
         }),
