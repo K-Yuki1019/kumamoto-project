@@ -54,8 +54,12 @@
             </button>
           </div>
         </div>
+
+        <a class="url" href="{{ project.projectURL }}" target="_blank"
+          >使ってみる</a
+        >
       </div>
     </div>
   </ng-container>
-  <app-project-comment></app-project-comment>
+  <app-project-comment [projectId]="project.id"></app-project-comment>
 </div>

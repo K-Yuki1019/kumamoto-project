@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { fade } from 'src/app/animation';
-import { Project } from 'src/app/interfaces/project';
+import { Project, ProjectWithUser } from 'src/app/interfaces/project';
 
 @Component({
   selector: 'app-card',
@@ -9,7 +9,7 @@ import { Project } from 'src/app/interfaces/project';
   animations: [fade],
 })
 export class CardComponent implements OnInit {
-  @Input() project: Project;
+  @Input() project: ProjectWithUser;
   constructor() {}
 
   ngOnInit(): void {}

@@ -1,9 +1,11 @@
 <div class="wrapper">
   <div class="container">
     <h2 class="heading">Project list</h2>
+    <p class="heading__sub">気になるプロジェクトを選んで使ってみよう！</p>
     <div class="title">
       <ng-container *ngIf="projects$ | async as projects">
         <app-card
+          @fade
           *ngFor="let project of projects"
           [project]="project"
         ></app-card>
