@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, HostListener, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -21,6 +21,8 @@ export class ProjectEditDialogComponent implements OnInit {
   file: File;
   thumbnailURL: string | ArrayBuffer;
   project: Project;
+  // NOTE: Guardで使用している
+  public isComplete = false;
 
   form = this.fb.group({
     title: ['', [Validators.required, Validators.maxLength(50)]],
@@ -75,6 +77,14 @@ export class ProjectEditDialogComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  @HostListener('window:beforeunload', ['$event'])
+  unloadNotification($event: any) {
+    if (this.form.dirty) {
+      $event.preventDefault();
+      $event.returnValue = '作業中の内容が失われますが、よろしいですか？';
+    }
+  }
+
   convertImage(file: File) {
     const reader = new FileReader();
     reader.onload = (e) => {
@@ -106,6 +116,9 @@ export class ProjectEditDialogComponent implements OnInit {
         this.file
       )
       .then(() => this.snackBar.open('投稿しました'))
-      .then(() => (this.isProcessing = false));
+      .then(() => {
+        this.isComplete = true;
+        this.isProcessing = false;
+      });
   }
 }

@@ -57,7 +57,12 @@ export class AuthService {
             .catch((error) => {
               this.failedLogin(error);
             });
+        } else {
+          this.succeededLogin();
         }
+      })
+      .catch((error) => {
+        this.failedLogin(error);
       });
   }
 
@@ -81,7 +86,7 @@ export class AuthService {
     return await this.afAuth
       .signOut()
       .then(() => {
-        this.router.navigateByUrl('/');
+        this.router.navigateByUrl('/welcome');
         this.snackBar.open('ログアウトしました。', '閉じる');
         this.loginProcessing = false;
       })
