@@ -31,6 +31,10 @@ const routes: Routes = [
     canLoad: [GuestGuard],
     canActivate: [GuestGuard],
   },
+  {
+    path: '**',
+    redirectTo: '/',
+  },
 ];
 
 @NgModule({
