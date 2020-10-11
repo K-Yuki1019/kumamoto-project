@@ -75,7 +75,15 @@ export class ProjectEditDialogComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: Project
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.form.patchValue({
+      title: this.data.title,
+      description: this.data.description,
+      projectURL: this.data.projectURL,
+      category: this.data.category,
+      body: this.data.body,
+    });
+  }
 
   @HostListener('window:beforeunload', ['$event'])
   unloadNotification($event: any) {
@@ -103,22 +111,44 @@ export class ProjectEditDialogComponent implements OnInit {
   submit(uid: string) {
     this.isProcessing = true;
     const formData = this.form.value;
-    this.projectService
-      .createProject(
-        {
-          title: formData.title,
-          description: formData.description,
-          projectURL: formData.projectURL,
-          uid,
-          category: formData.category,
-          body: formData.body,
-        },
-        this.file
-      )
-      .then(() => this.snackBar.open('投稿しました'))
-      .then(() => {
-        this.isComplete = true;
-        this.isProcessing = false;
-      });
+
+    if (this.data) {
+      this.projectService
+        .updateProject(
+          {
+            title: formData.title,
+            description: formData.description,
+            projectURL: formData.projectURL,
+            uid,
+            id: this.data.id,
+            category: formData.category,
+            body: formData.body,
+          },
+          this.file
+        )
+        .then(() => this.snackBar.open('更新しました'))
+        .then(() => {
+          this.isComplete = true;
+          this.isProcessing = false;
+        });
+    } else {
+      this.projectService
+        .createProject(
+          {
+            title: formData.title,
+            description: formData.description,
+            projectURL: formData.projectURL,
+            uid,
+            category: formData.category,
+            body: formData.body,
+          },
+          this.file
+        )
+        .then(() => this.snackBar.open('投稿しました'))
+        .then(() => {
+          this.isComplete = true;
+          this.isProcessing = false;
+        });
+    }
   }
 }

@@ -1,20 +1,24 @@
 <div class="container" *ngIf="project$ | async as project">
   <ng-container *ngIf="user$ | async as user">
     <div class="grid">
-      <div class="heading-wrap">
-        <div class="heading">
-          <h1 class="heading__top">{{ project.title }}</h1>
+      <div class="wrap">
+        <div class="heading-wrap">
+          <div class="heading">
+            <h1 class="heading__top">{{ project.title }}</h1>
+          </div>
+
+          <div class="project">
+            <h2 class="project__title">
+              {{ project.description }}
+            </h2>
+
+            <figure>
+              <img [src]="project.thumbnailURL" alt="" />
+            </figure>
+          </div>
         </div>
 
-        <div class="project">
-          <h2 class="project__title">
-            {{ project.description }}
-          </h2>
-
-          <figure>
-            <img [src]="project.thumbnailURL" alt="" />
-          </figure>
-        </div>
+        <app-project-comment [projectId]="project.id"></app-project-comment>
       </div>
 
       <div class="body-wrap">
@@ -61,5 +65,4 @@
       </div>
     </div>
   </ng-container>
-  <app-project-comment [projectId]="project.id"></app-project-comment>
 </div>

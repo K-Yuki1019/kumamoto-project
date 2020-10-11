@@ -8,6 +8,7 @@ import { UserData } from 'src/app/interfaces/user';
 import { AuthService } from 'src/app/services/auth.service';
 import { ProjectService } from 'src/app/services/project.service';
 import { DeleteDialogComponent } from 'src/app/shared/delete-dialog/delete-dialog.component';
+import { ProjectEditDialogComponent } from 'src/app/shared/project-edit-dialog/project-edit-dialog.component';
 
 @Component({
   selector: 'app-project-detail',
@@ -33,11 +34,18 @@ export class ProjectDetailComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  openProjectDialog(project: Project) {}
+  openProjectDialog(project: Project) {
+    this.dialog
+      .open(ProjectEditDialogComponent, {
+        maxWidth: '100vw',
+        minWidth: '30%',
+        autoFocus: false,
+        data: { ...project },
+      })
+      .afterClosed();
+  }
 
   openDeleteDialog(project: Project) {
-    console.log(project);
-
     this.dialog
       .open(DeleteDialogComponent, {
         maxWidth: '100vw',
@@ -48,9 +56,6 @@ export class ProjectDetailComponent implements OnInit {
       .afterClosed()
       .subscribe((result) => {
         if (result) {
-          console.log('check');
-          console.log(result);
-
           this.projectService.deleteProject(result);
         } else {
           return;
