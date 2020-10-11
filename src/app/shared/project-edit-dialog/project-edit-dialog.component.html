@@ -63,14 +63,26 @@
             </mat-select>
           </mat-form-field>
         </div>
+        <mat-form-field appearance="outline" class="form__description">
+          <textarea
+            matInput
+            placeholder="プロジェクトの特徴を一言で"
+            formControlName="description"
+            #description
+            autocomplete="off"
+            required
+            matTextareaAutosize
+            [matAutosizeMinRows]="2"
+          ></textarea>
+        </mat-form-field>
+
         <mat-form-field appearance="outline" class="form__body">
           <textarea
             matInput
             placeholder="プロジェクトの詳細情報を入力"
-            formControlName="description"
+            formControlName="body"
             #body
             autocomplete="off"
-            required
             matTextareaAutosize
             [matAutosizeMinRows]="10"
           ></textarea>

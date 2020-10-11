@@ -39,7 +39,7 @@ export class ProjectService {
   }
 
   getProject(id: string): Observable<Project> {
-    return this.db.doc<Project>(`products/${id}`).valueChanges();
+    return this.db.doc<Project>(`projects/${id}`).valueChanges();
   }
 
   getProjectWithUserByProjectId(id: string): Observable<ProjectWithUser> {

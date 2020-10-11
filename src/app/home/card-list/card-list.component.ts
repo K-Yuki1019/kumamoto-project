@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Project } from 'src/app/interfaces/project';
+import { ProjectService } from 'src/app/services/project.service';
 
 @Component({
   selector: 'app-card-list',
@@ -7,8 +9,9 @@ import { Project } from 'src/app/interfaces/project';
   styleUrls: ['./card-list.component.scss'],
 })
 export class CardListComponent implements OnInit {
-  @Input() projects: Project[];
-  constructor() {}
+  projects$: Observable<Project[]> = this.projectService.getProjectsWithUsers();
+
+  constructor(private projectService: ProjectService) {}
 
   ngOnInit(): void {}
 }

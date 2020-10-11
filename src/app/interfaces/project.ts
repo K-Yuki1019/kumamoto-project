@@ -10,6 +10,7 @@ export interface Project {
   createdAt: firestore.Timestamp;
   uid: string;
   category: string;
+  body: string;
 }
 
 export interface ProjectWithUser extends Project {

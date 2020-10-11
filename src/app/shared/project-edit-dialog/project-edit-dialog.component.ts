@@ -24,14 +24,16 @@ export class ProjectEditDialogComponent implements OnInit {
 
   form = this.fb.group({
     title: ['', [Validators.required, Validators.maxLength(50)]],
-    description: ['', [Validators.required, Validators.maxLength(400)]],
-    category: ['', [Validators.required, Validators.maxLength(400)]],
+    description: ['', [Validators.required, Validators.maxLength(50)]],
+    category: ['', [Validators.required]],
     projectURL: ['', [Validators.required, Validators.maxLength(400)]],
+    body: ['', [Validators.required, Validators.maxLength(400)]],
   });
 
   categoryGroup: Category[] = [
     { value: 'エンタメ', viewValue: 'エンタメ' },
     { value: 'テクノロジー', viewValue: 'テクノロジー' },
+    { value: '教育', viewValue: '教育' },
     { value: 'スポーツ', viewValue: 'スポーツ' },
     { value: 'デザイン', viewValue: 'デザイン' },
     { value: 'ビューティー', viewValue: 'ビューティー' },
@@ -39,6 +41,7 @@ export class ProjectEditDialogComponent implements OnInit {
     { value: 'フード', viewValue: 'フード' },
     { value: 'モノづくり', viewValue: 'モノづくり' },
     { value: '政治経済', viewValue: '政治経済' },
+    { value: 'メディア', viewValue: 'メディア' },
     { value: '効率化', viewValue: '効率化' },
   ];
 
@@ -56,6 +59,10 @@ export class ProjectEditDialogComponent implements OnInit {
 
   get projectURL(): FormControl {
     return this.form.get('projectURL') as FormControl;
+  }
+
+  get body(): FormControl {
+    return this.form.get('body') as FormControl;
   }
 
   constructor(
@@ -94,6 +101,7 @@ export class ProjectEditDialogComponent implements OnInit {
           projectURL: formData.projectURL,
           uid,
           category: formData.category,
+          body: formData.body,
         },
         this.file
       )
