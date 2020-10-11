@@ -8,9 +8,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
+import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
 
 @NgModule({
-  declarations: [ProjectEditDialogComponent],
+  declarations: [ProjectEditDialogComponent, DeleteDialogComponent],
   imports: [
     CommonModule,
     MatDialogModule,

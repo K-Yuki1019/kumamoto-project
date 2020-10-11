@@ -3,10 +3,11 @@ import { Project, ProjectWithUser } from '../interfaces/project';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { firestore } from 'firebase';
-import { AuthService } from './auth.service';
 import { Observable, combineLatest, of } from 'rxjs';
 import { switchMap, map } from 'rxjs/operators';
 import { UserData } from '../interfaces/user';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -14,8 +15,9 @@ import { UserData } from '../interfaces/user';
 export class ProjectService {
   constructor(
     private db: AngularFirestore,
-    private authService: AuthService,
-    private storege: AngularFireStorage
+    private storege: AngularFireStorage,
+    private snackbar: MatSnackBar,
+    private router: Router
   ) {}
 
   async uploadImage(id: string, file: File) {
@@ -108,7 +110,13 @@ export class ProjectService {
     });
   }
 
-  deleteProject(id: string): Promise<void> {
-    return this.db.doc<Project>(`projects/${id}`).delete();
+  deleteProject(project: Project): Promise<void> {
+    return this.db
+      .doc<Project>(`projects/${project.id}`)
+      .delete()
+      .then(() => {
+        this.router.navigateByUrl('/');
+        this.snackbar.open('プロジェクトを削除しました');
+      });
   }
 }
