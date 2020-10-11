@@ -104,10 +104,24 @@ export class ProjectService {
       );
   }
 
-  updateProject(project: Project): Promise<void> {
-    return this.db.doc<Project>(`projects/${project.id}`).set(project, {
-      merge: true,
-    });
+  async updateProject(
+    project: Omit<Project, 'thumbnailURL' | 'createdAt'>,
+    thumbnailURL: File
+  ): Promise<void> {
+    const imageURL: string = await this.uploadImage(project.id, thumbnailURL);
+    const projectData: Project = {
+      createdAt: firestore.Timestamp.now(),
+      ...project,
+      thumbnailURL: imageURL,
+    };
+    return this.db.doc<Project>(`projects/${project.id}`).set(
+      {
+        ...projectData,
+      },
+      {
+        merge: true,
+      }
+    );
   }
 
   deleteProject(project: Project): Promise<void> {
